@@ -10,6 +10,13 @@
 - Fix the regex
 - Try and validate edited URL addresses.
 - Fix long URLs for smaller screens
+- Fix link button not working in firefox.
+- Test in more browsers and screensizes
+- Clear all data button plus rename 'reset' button to 'load data'
+- Make clear a user has to add https://www. or http://www. to the url, or ideally auto-prefix for them!
+- Make code more readable - split the HTML onto new lines
+- Split HTML onto new linkes
+- Use gh-pages module
 
 # Admin
 - Can I use Sass or should I take it out?

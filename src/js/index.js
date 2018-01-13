@@ -20,9 +20,9 @@ document.getElementById("reset-data").addEventListener(
   function() {
     localStorage.removeItem("updatedData");
     urlList = startingData.slice();
-    window.scroll(0,0);
+    window.scroll(0, 0);
     //use a fake load for 500ms to make the user experience a little less jumpy on reset 🤷‍
-    setTimeout(function(){
+    setTimeout(function() {
       document.getElementById("spinner").classList.toggle("hidden");
       document.getElementById("content").classList.toggle("hidden");
     }, 500);
@@ -92,7 +92,7 @@ getPageNumbers();
 //generating the links dynamically
 function getLinkList() {
   let linkList = "";
-  for (let i = selectedPage * 20; i < selectedPage * 20 + 20; i++) {
+  for (let i = selectedPage * 20; i < (selectedPage * 20) + 20; i++) {
     const link = `
       <li class="link-li">
         <button class="delete-button" id="delete-button-${i}" onclick=deleteLink(${i})><img src="images/trash-can.png"></button>
@@ -104,7 +104,7 @@ function getLinkList() {
     ]}</p>
       </li>
     `;
-    if (urlList[i] !== undefined) {
+    if (urlList[i]) {
       linkList += link;
     }
   }
@@ -127,7 +127,6 @@ function changeLinkBackgrounds() {
     "rgba(255, 255, 255, 0.1)";
 }
 
-//delete links
 function deleteLink(num) {
   urlList.splice(num, 1);
   getNumberOfPages();
@@ -170,16 +169,20 @@ document.getElementById("add-url-form").addEventListener("submit", function(e) {
 var xmlhttp = new XMLHttpRequest();
 
 xmlhttp.onreadystatechange = function() {
-  if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+  if (xmlhttp.readyState === XMLHttpRequest.DONE) {
     document.getElementById("spinner").classList.toggle("hidden");
-      document.getElementById("content").classList.toggle("hidden");
-    let parsedURL = this.responseURL.replace("https://cors-anywhere.herokuapp.com/", "");
+    document.getElementById("content").classList.toggle("hidden");
+    let parsedURL = this.responseURL.replace(
+      "https://cors-anywhere.herokuapp.com/",
+      ""
+    );
     document.getElementById("new-url").innerHTML = parsedURL;
     document.getElementById("results").classList.toggle("hidden");
-      document.getElementById("overview").classList.toggle("hidden");
-    if (xmlhttp.status == 200) {
+    document.getElementById("overview").classList.toggle("hidden");
+    if (xmlhttp.status === 200) {
       //Handle case where URL exists
-      document.getElementById("result-message").innerHTML = "Thank you for submitting a new URL! 👊";
+      document.getElementById("result-message").innerHTML =
+        "Thank you for submitting a new URL! 👊";
       urlList.push(parsedURL);
       document.getElementById("add-url-form").reset();
       getNumberOfPages();
@@ -188,7 +191,8 @@ xmlhttp.onreadystatechange = function() {
       getLinkList();
     } else {
       //Handle case where URL does not exist
-      document.getElementById("result-message").innerHTML = "The following URL does not exist 😢<br> Try again.";
+      document.getElementById("result-message").innerHTML =
+        "The following URL does not exist 😢<br> Try again.";
     }
   }
 };
