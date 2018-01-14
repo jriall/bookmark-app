@@ -1,0 +1,41 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after{content:'';content:none}
+q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+@font-face{font-family:"RobotoRegular";src:url("../fonts/Roboto-Regular.ttf")}
+@font-face{font-family:"RobotoBold";src:url("../fonts/Roboto-Bold.ttf")}
+@font-face{font-family:"RobotoThin";src:url("../fonts/Roboto-Thin.ttf")}
+.hidden{display:none}input:focus,textarea:focus,p:focus{outline:0}body{background:#360033;background:-webkit-linear-gradient(to bottom,#0b8793,#360033);background:linear-gradient(to bottom,#0b8793,#360033);min-height:100vh;background-attachment:fixed}
+.app-header{font-family:"RobotoBold",sans-serif;font-size:60px;text-align:center;color:white;margin-top:30px;margin-bottom:30px}
+@media(max-width:1224px){.app-header{font-size:40px}}@media(max-width:768px){.app-header{font-size:30px}
+}.content{width:50%;margin:0 auto;background-color:transparent}@media(max-width:1224px){.content{width:70%}
+}@media(max-width:768px){.content{width:97%}}.content button{font-family:"RobotoRegular",sans-serif;border:0;background-color:transparent;cursor:pointer;outline:0}
+.content h2{text-align:center;color:white;font-size:24px;line-height:30px;font-family:"RobotoRegular",sans-serif}
+.content p{color:white;font-size:20px;font-family:"RobotoRegular",sans-serif}
+.content .overview{text-align:center}.content .overview form{text-align:center;margin-top:20px;margin-bottom:20px}
+@media(max-width:768px){.content .overview form{margin-bottom:20px}}.content .overview form .url-input{font-size:20px;width:240px;padding:7px;font-family:"RobotoRegular",sans-serif;background-color:rgba(255,255,255,0.1);border:black;border-radius:5px;color:white}
+.content .overview form .url-input::-webkit-input-placeholder{color:white}.content .overview form .url-input::-moz-placeholder{color:white}
+.content .overview form .url-input:-ms-input-placeholder{color:white}.content .overview form .url-input:-moz-placeholder{color:white}
+.content .overview form .submit-button{cursor:pointer;font-size:14px;height:40px;width:80px;border-radius:40px;border:1px solid white;margin-left:20px;background-color:transparent;color:white}
+@media(max-width:768px){.content .overview form .submit-button{margin-top:20px}}.content .overview form .submit-button:hover{background-color:rgba(255,255,255,0.1)}
+.content .overview .navigation{text-align:center;padding-top:30px;padding-bottom:20px}
+.content .overview .navigation .navigation-button{height:30px;width:30px;display:inline-block;position:relative;top:3px}
+.content .overview .navigation .navigation-button img{height:20px}@media(max-width:768px){.content .overview .navigation .navigation-button img{height:14px}
+}.content .overview .navigation .navigation-button:hover{opacity:.7}.content .overview .navigation .page-numbers{display:inline-block;padding-left:40px;padding-right:20px}
+@media(max-width:768px){.content .overview .navigation .page-numbers{padding-left:15px;padding-right:0}
+}.content .overview .navigation .page-numbers .page-number{cursor:pointer;height:30px;width:30px;border-radius:40px;margin:5px;color:white;font-size:14px}
+@media(max-width:768px){.content .overview .navigation .page-numbers .page-number{height:25px;width:25px}
+}.content .overview .navigation .page-numbers .page-number:hover{opacity:.7}.content .overview .link-list{margin-bottom:20px}
+.content .overview .link-list .link-li{background:rgba(255,255,255,0.1);text-align:left;margin-top:5px;margin-bottom:5px;border-radius:5px;padding:5px}
+.content .overview .link-list .link-li button img{height:16px}@media(max-width:768px){.content .overview .link-list .link-li button img{height:12px}
+}.content .overview .link-list .link-li .delete-button,.content .overview .link-list .link-li .link-button,.content .overview .link-list .link-li .link-item{display:inline-block}
+.content .overview .link-list .link-li .delete-button:hover,.content .overview .link-list .link-li .link-button:hover{opacity:.7}
+.content .overview .link-list .link-li .link-item{margin-left:10px}@media(max-width:768px){.content .overview .link-list .link-li .link-item{font-size:12px}
+}.content .overview .load-sample-data,.content .overview .clear-data{background-color:transparent;color:white;font-size:14px;height:42px;width:40%;max-width:200px;margin-left:10px;margin-right:10px;border:1px solid white;border-radius:42px;display:inline-block;margin-bottom:20px}
+.content .overview .load-sample-data:hover,.content .overview .clear-data:hover{background-color:rgba(255,255,255,0.1)}
+.content .results{text-align:center}.content .results .new-url{padding-top:24px;padding-bottom:24px}
+.content .results .overview-page-link{background-color:white;color:black;font-size:20px;height:42px;width:80px;border-radius:42px;border:1px solid white;margin-left:20px;color:white;background-color:transparent}
+.content .results .overview-page-link:hover{background-color:rgba(255,255,255,0.1)}
+@-webkit-keyframes spinner{to{-webkit-transform:rotate(360deg)}}@-moz-keyframes spinner{to{-moz-transform:rotate(360deg)}
+}@-ms-keyframes spinner{to{-ms-transform:rotate(360deg)}}@keyframes spinner{to{transform:rotate(360deg)}
+}#spinner{position:absolute;top:50%;left:50%;margin:-30px 0 0 -30px;width:60px;height:60px;border-radius:50%;border-top:10px solid white;border-right:10px solid white;border-bottom:10px solid grey;border-left:10px solid grey;-webkit-animation:spinner 1.2s infinite linear;-moz-animation:spinner 1.2s infinite linear;-ms-animation:spinner 1.2s infinite linear;animation:spinner 1.2s infinite linear}
