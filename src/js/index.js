@@ -3,7 +3,7 @@ let selectedPage = 0;
 let pages;
 
 //load data from localStorage or from test object if it does not exist yet
-window.onload = () => {
+window.onload = function() {
   if (localStorage.updatedData) {
     urlList = JSON.parse(localStorage.getItem("updatedData"));
   }
@@ -11,11 +11,15 @@ window.onload = () => {
 
 //save data to localStorage on refresh of browser
 window.onbeforeunload = function() {
-  localStorage.setItem("updatedData", JSON.stringify(urlList));
+  if (typeof(Storage) !== "undefined") {
+    localStorage.setItem("updatedData", JSON.stringify(urlList));
+  } else {
+    console.log('Browser cannot persist data across page refresh :(')
+  }
 };
 
 //reset data and reload test data
-document.getElementById("reset-data").addEventListener(
+document.getElementById("load-sample-data").addEventListener(
   "click",
   function() {
     localStorage.removeItem("updatedData");
@@ -23,17 +27,29 @@ document.getElementById("reset-data").addEventListener(
     window.scroll(0, 0);
     //use a fake load for 500ms to make the user experience a little less jumpy on reset 🤷‍
     setTimeout(function() {
-      document.getElementById("spinner").classList.toggle("hidden");
-      document.getElementById("content").classList.toggle("hidden");
+      toggleSpinner();
     }, 500);
-    document.getElementById("spinner").classList.toggle("hidden");
-    document.getElementById("content").classList.toggle("hidden");
+    toggleSpinner();
     selectedPage = 0;
     getPageNumbers();
     getLinkList();
   },
   false
 );
+
+//clear all data from the app and from localStorage
+document.getElementById("clear-data").addEventListener(
+  "click",
+  function() {
+    localStorage.removeItem("updatedData");
+    urlList = [];
+    window.scroll(0, 0);
+    selectedPage = 0;
+    getPageNumbers();
+    getLinkList();
+  },
+  false
+)
 
 //function to change page number on clicking page number
 function changePage(num) {
@@ -69,7 +85,7 @@ document.getElementById("decrement").addEventListener(
 //generating the pagination links dynamically
 
 function getNumberOfPages() {
-  pages = Math.ceil(urlList.length / 20);
+  pages = Math.ceil(urlList.length / 20) || 1;
 }
 
 function getPageNumbers() {
@@ -95,13 +111,15 @@ function getLinkList() {
   for (let i = selectedPage * 20; i < (selectedPage * 20) + 20; i++) {
     const link = `
       <li class="link-li">
-        <button class="delete-button" id="delete-button-${i}" onclick=deleteLink(${i})><img src="images/trash-can.png"></button>
-        <button class="link-button"><a href="${urlList[
-          i
-        ]}" target="_blank"><img src="images/link.png"></a></button>
-        <p contenteditable="true" id="link-${i}" class="link-item">${urlList[
-      i
-    ]}</p>
+        <button
+          class="delete-button"
+          id="delete-button-${i}"
+          onclick=deleteLink(${i})
+        >
+          <img src="images/trash-can.png">
+        </button>
+          <a href="${urlList[i]}" target="_blank"><button class="link-button"><img src="images/link.png"></button></a>
+        <p contenteditable="true" id="link-${i}" class="link-item">${urlList[i]}</p>
       </li>
     `;
     if (urlList[i]) {
@@ -142,8 +160,7 @@ document
   .getElementById("overview-page-link")
   .addEventListener("click", function(e) {
     e.preventDefault();
-    document.getElementById("results").classList.toggle("hidden");
-    document.getElementById("overview").classList.toggle("hidden");
+    toggleResultsPage();
   });
 
 //listen for changes to contenteditable elements and update data accordingly
@@ -159,8 +176,7 @@ Array.prototype.forEach.call(editable, a => {
 document.getElementById("add-url-form").addEventListener("submit", function(e) {
   e.preventDefault();
   let newURL = document.getElementById("input-url").value;
-  document.getElementById("spinner").classList.toggle("hidden");
-  document.getElementById("content").classList.toggle("hidden");
+  toggleSpinner();
   xmlhttp.open("GET", `https://cors-anywhere.herokuapp.com/${newURL}`, true);
   xmlhttp.send();
 });
@@ -170,29 +186,43 @@ var xmlhttp = new XMLHttpRequest();
 
 xmlhttp.onreadystatechange = function() {
   if (xmlhttp.readyState === XMLHttpRequest.DONE) {
-    document.getElementById("spinner").classList.toggle("hidden");
-    document.getElementById("content").classList.toggle("hidden");
+    toggleSpinner();
     let parsedURL = this.responseURL.replace(
       "https://cors-anywhere.herokuapp.com/",
       ""
     );
     document.getElementById("new-url").innerHTML = parsedURL;
-    document.getElementById("results").classList.toggle("hidden");
-    document.getElementById("overview").classList.toggle("hidden");
+    toggleResultsPage();
     if (xmlhttp.status === 200) {
-      //Handle case where URL exists
-      document.getElementById("result-message").innerHTML =
-        "Thank you for submitting a new URL! 👊";
-      urlList.push(parsedURL);
-      document.getElementById("add-url-form").reset();
-      getNumberOfPages();
-      selectedPage = pages - 1;
-      getPageNumbers();
-      getLinkList();
+      if (urlList.indexOf(parsedURL) > -1) {
+        //don't add if the URL already exists in the list
+        document.getElementById("result-message").innerHTML = "That URL already exists in the list!";
+        document.getElementById("add-url-form").reset();
+      } else {
+        //adding to the list if URL isn't in the list already
+        document.getElementById("result-message").innerHTML = "Thank you for submitting a new URL! 👊";
+        urlList.push(parsedURL);
+        getNumberOfPages();
+        selectedPage = pages - 1;
+        getPageNumbers();
+        getLinkList();
+      }
     } else {
       //Handle case where URL does not exist
       document.getElementById("result-message").innerHTML =
-        "The following URL does not exist 😢<br> Try again.";
+        "The following URL does not exist or is currently unreachable 😢<br> Try again.";
     }
   }
 };
+
+//turn the loading spinner on or off
+function toggleSpinner() {
+  document.getElementById("spinner").classList.toggle("hidden");
+  document.getElementById("content").classList.toggle("hidden");
+}
+
+//switches between the results page and the main content page
+function toggleResultsPage() {
+  document.getElementById("results").classList.toggle("hidden");
+  document.getElementById("overview").classList.toggle("hidden");
+}

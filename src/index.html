@@ -14,9 +14,21 @@
   <div class="content" id="content">
     <div class="overview" id="overview">
       <form id="add-url-form" name="add-url-form">
-        <input type="text" name="url" class="url-input" id="input-url" placeholder="ENTER A URL TO SAVE..." autofocus="true" autocomplete="off" required pattern="(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?" title="Invalid URL. Try again.">
+        <input
+          type="text"
+          name="url"
+          class="url-input"
+          id="input-url"
+          value="https://"
+          autofocus="true"
+          autocomplete="off"
+          required
+          pattern="(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?"
+          title="Invalid URL. Note all URLs must include an https:// or http:// prefix.">
         <input type="submit" value="ADD" class="submit-button">
       </form>
+      <button class="load-sample-data" id="load-sample-data">LOAD DATA</button>
+      <button class="clear-data" id="clear-data">CLEAR DATA</button>
       <h2>BOOKMARKED LINKS</h2>
       <div class="navigation">
         <button class="navigation-button" id="decrement">
@@ -26,7 +38,6 @@
             <button class="navigation-button" id="increment"><img src="images/keyboard-right-arrow-button.png"></button>
       </div>
       <ul class="link-list" id="link-list"></ul>
-      <button class="reset-data" id="reset-data">RESET DATA</button>
     </div>
     <div class="results hidden" id="results">
       <h2 id="result-message"></h2>

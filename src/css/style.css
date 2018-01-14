@@ -101,13 +101,13 @@ body {
   .content p {
     color: white;
     font-size: 20px;
-    font-family: "RobotoThin", sans-serif; }
+    font-family: "RobotoRegular", sans-serif; }
   .content .overview {
     text-align: center; }
     .content .overview form {
       text-align: center;
       margin-top: 20px;
-      margin-bottom: 60px; }
+      margin-bottom: 20px; }
       @media (max-width: 768px) {
         .content .overview form {
           margin-bottom: 20px; } }
@@ -130,7 +130,7 @@ body {
           color: white; }
       .content .overview form .submit-button {
         cursor: pointer;
-        font-size: 20px;
+        font-size: 14px;
         height: 40px;
         width: 80px;
         border-radius: 40px;
@@ -146,18 +146,18 @@ body {
     .content .overview .navigation {
       text-align: center;
       padding-top: 30px;
-      padding-bottom: 60px; }
-      @media (max-width: 768px) {
-        .content .overview .navigation {
-          padding-bottom: 20px; } }
+      padding-bottom: 20px; }
       .content .overview .navigation .navigation-button {
-        height: 20px;
-        width: 20px;
+        height: 30px;
+        width: 30px;
         display: inline-block;
         position: relative;
         top: 3px; }
         .content .overview .navigation .navigation-button img {
           height: 20px; }
+          @media (max-width: 768px) {
+            .content .overview .navigation .navigation-button img {
+              height: 14px; } }
         .content .overview .navigation .navigation-button:hover {
           opacity: 0.7; }
       .content .overview .navigation .page-numbers {
@@ -166,54 +166,62 @@ body {
         padding-right: 20px; }
         @media (max-width: 768px) {
           .content .overview .navigation .page-numbers {
-            padding-left: 20px;
+            padding-left: 15px;
             padding-right: 0; } }
         .content .overview .navigation .page-numbers .page-number {
           cursor: pointer;
-          height: 40px;
-          width: 40px;
+          height: 30px;
+          width: 30px;
           border-radius: 40px;
           margin: 5px;
           color: white;
-          font-size: 20px; }
+          font-size: 14px; }
           @media (max-width: 768px) {
             .content .overview .navigation .page-numbers .page-number {
               height: 25px;
               width: 25px; } }
           .content .overview .navigation .page-numbers .page-number:hover {
             opacity: 0.7; }
-    .content .overview .link-list .link-li {
-      background: rgba(255, 255, 255, 0.1);
-      text-align: left;
-      margin-top: 5px;
-      margin-bottom: 5px;
-      border-radius: 5px;
-      padding: 5px; }
-      .content .overview .link-list .link-li button img {
-        height: 16px; }
-      .content .overview .link-list .link-li .delete-button,
-      .content .overview .link-list .link-li .link-button,
-      .content .overview .link-list .link-li .link-item {
-        display: inline-block; }
-      .content .overview .link-list .link-li .delete-button:hover,
-      .content .overview .link-list .link-li .link-button:hover {
-        opacity: 0.7; }
-      .content .overview .link-list .link-li .link-item {
-        margin-left: 10px; }
-        @media (max-width: 768px) {
-          .content .overview .link-list .link-li .link-item {
-            font-size: 14px; } }
-    .content .overview .reset-data {
+    .content .overview .link-list {
+      margin-bottom: 20px; }
+      .content .overview .link-list .link-li {
+        background: rgba(255, 255, 255, 0.1);
+        text-align: left;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        padding: 5px; }
+        .content .overview .link-list .link-li button img {
+          height: 16px; }
+          @media (max-width: 768px) {
+            .content .overview .link-list .link-li button img {
+              height: 12px; } }
+        .content .overview .link-list .link-li .delete-button,
+        .content .overview .link-list .link-li .link-button,
+        .content .overview .link-list .link-li .link-item {
+          display: inline-block; }
+        .content .overview .link-list .link-li .delete-button:hover,
+        .content .overview .link-list .link-li .link-button:hover {
+          opacity: 0.7; }
+        .content .overview .link-list .link-li .link-item {
+          margin-left: 10px; }
+          @media (max-width: 768px) {
+            .content .overview .link-list .link-li .link-item {
+              font-size: 12px; } }
+    .content .overview .load-sample-data, .content .overview .clear-data {
       background-color: transparent;
       color: white;
-      font-size: 20px;
+      font-size: 14px;
       height: 42px;
-      width: 150px;
+      width: 40%;
+      max-width: 200px;
+      margin-left: 10px;
+      margin-right: 10px;
       border: 1px solid white;
       border-radius: 42px;
-      margin-top: 20px;
+      display: inline-block;
       margin-bottom: 20px; }
-      .content .overview .reset-data:hover {
+      .content .overview .load-sample-data:hover, .content .overview .clear-data:hover {
         background-color: rgba(255, 255, 255, 0.1); }
   .content .results {
     text-align: center; }

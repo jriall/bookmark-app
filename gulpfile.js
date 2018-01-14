@@ -1,16 +1,17 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var browserSync = require('browser-sync').create();
-var useref = require('gulp-useref');
-var uglify = require('gulp-uglify-es').default;
-var gulpIf = require('gulp-if');
-var uglifycss = require('gulp-uglifycss');
-var newer = require('gulp-newer');
-var imagemin = require('gulp-imagemin');
-var cache = require('gulp-cache');
-var del = require('del');
-var runSequence = require('run-sequence');
-var ghPages = require('gulp-gh-pages');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const browserSync = require('browser-sync').create();
+const useref = require('gulp-useref');
+const uglify = require('gulp-uglify-es').default;
+const gulpIf = require('gulp-if');
+const uglifycss = require('gulp-uglifycss');
+const newer = require('gulp-newer');
+const imagemin = require('gulp-imagemin');
+const cache = require('gulp-cache');
+const del = require('del');
+const runSequence = require('run-sequence');
+const ghPages = require('gulp-gh-pages');
+const compiler = require('google-closure-compiler-js').gulp();
 
 gulp.task('sass', function() {
   return gulp.src('src/scss/style.scss')
