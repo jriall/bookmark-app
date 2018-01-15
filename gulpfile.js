@@ -12,6 +12,14 @@ const del = require('del');
 const runSequence = require('run-sequence');
 const ghPages = require('gulp-gh-pages');
 const babel = require('gulp-babel');
+gjslint = require('gulp-gjslint');
+
+// Lint files and output results to the console
+gulp.task('lint', function() {
+    return gulp.src('src/js/**/*.js')
+        .pipe(gjslint())
+        .pipe(gjslint.reporter('console'))
+});
 
 gulp.task('sass', function() {
   return gulp.src('src/scss/style.scss')
