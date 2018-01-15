@@ -11,7 +11,7 @@ const cache = require('gulp-cache');
 const del = require('del');
 const runSequence = require('run-sequence');
 const ghPages = require('gulp-gh-pages');
-const compiler = require('google-closure-compiler-js').gulp();
+const babel = require('gulp-babel');
 
 gulp.task('sass', function() {
   return gulp.src('src/scss/style.scss')
@@ -24,7 +24,6 @@ gulp.task('sass', function() {
 
 gulp.task('watch', ['browserSync', 'sass'], function (){
   gulp.watch('src/scss/**/*.scss', ['sass']);
-  // Reloads the browser whenever HTML or JS files change
   gulp.watch('src/*.html', browserSync.reload);
   gulp.watch('src/js/**/*.js', browserSync.reload);
 });
@@ -40,6 +39,9 @@ gulp.task('browserSync', function() {
 gulp.task('useref', function(){
   return gulp.src('src/*.html')
     .pipe(useref())
+    .pipe(gulpIf('*.js', babel({
+            presets: ['env']
+        })))
     .pipe(gulpIf('*.js', uglify()))
     .pipe(gulpIf('*.css', uglifycss({
       "maxLineLen": 80,
