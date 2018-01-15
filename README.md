@@ -1,8 +1,6 @@
-### URL Bookmark App
+# URL Bookmark App
 
-## Technical Design Document
-
-# Overview/User Journeys
+## Overview/User Journeys
 
 A JavaScript Web Application that maintains a list of bookmarks (URLS).
 
@@ -10,7 +8,7 @@ The user is able to add/edit/delete any link in the list and the applications di
 
 Application can be found at https://jamesriall.co.uk/bookmark-app/
 
-# Development Environment
+## Development Environment
 
 - Developed on Mac OS in Sublime Text 3 with various plugins.
 - npm was used for development dependencies.
@@ -20,7 +18,7 @@ Application can be found at https://jamesriall.co.uk/bookmark-app/
 - Code published on GitHub Pages (redirect set up with my custom domain name through Cloudflare).
 - Linting to Google JS Style Guide using gulp-gjslint plugin.
 
-# Application Design
+## Application Design
 
 A fairly straightforward front-end HTML/CSS/JS project architecture with the initial framework of the page, minus content loaded from the HTML and CSS files. I have written the JavaScript files in a functional programming style, seeking to keep the functions as pure, small and reusable as possible.
 
@@ -34,7 +32,7 @@ New links can be added through the input form - a custom regex pattern verifies 
 
 Local storage is used to persist data across browser refreshes.
 
-# Limitations and Desired Improvements
+## Limitations and Desired Improvements
 - URLs are validated on adding a new URL, but not when editing an existing URL. This allows for broken links to be introduced to the application. I would seek to address this issue.
 - JavaScript code needs more testing - in future I would seek to build using a TDD process.
 - JavaScript file does not fully confirm to the Google Style Guide due to the multiline innerHTML usage. I would either seek advice on this exemption to the style guide or seek to replace this code with direct DOM Node manipulation.
@@ -42,7 +40,7 @@ Local storage is used to persist data across browser refreshes.
 - I would seek to make the components built with the innerHTML calls more reusable and flexible.
 - Use the Google Closure Compiler with advanced optimizations - I was able to establish how to use the closure compiler in the command line, but it blocked my attempts to build the final minified versions of the .js files due to a couple of lint errors I was not able to solve given the time limitations - namely window usage of localStorage and the global use of this in the http request. JS was minified using gulp-uglify-es instead.
 
-# Desirable Additional User Features
+## Desirable Additional User Features
 - As discussed, validating edited URLs.
 - Rather than a click to edit link displaying, I believe a click to be directed to the URL would be better, with the editing capability moved to a button which would display an edit modal to the user.
 - Better support for long URLs on mobile - currently long URLs would overflow to the right of the screen. Ideally display would truncate the URL at a certain length to prevent this.
